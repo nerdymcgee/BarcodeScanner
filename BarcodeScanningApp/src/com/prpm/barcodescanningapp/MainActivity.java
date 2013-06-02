@@ -3,6 +3,7 @@ package com.prpm.barcodescanningapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,9 +14,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.prpm.barcodescanningapp.helper.URLInString;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.android.Contents;
+import com.google.zxing.client.android.encode.CustomQRCodeEncoder;
+
+;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -38,6 +46,24 @@ public class MainActivity extends Activity implements OnClickListener {
 		contentTxt = (TextView) findViewById(R.id.scan_content);
 
 		scanBtn.setOnClickListener(this);
+
+		// ImageView to display the QR code in. This should be defined in
+		// your Activity's XML layout file
+		ImageView imageView = (ImageView) findViewById(R.id.qrCode);
+
+		String qrData = "Data I want to encode in QR code";
+		int qrCodeDimention = 500;
+
+		CustomQRCodeEncoder qrCodeEncoder = new CustomQRCodeEncoder(qrData,
+				null, Contents.Type.TEXT, BarcodeFormat.QR_CODE.toString(),
+				qrCodeDimention);
+
+		try {
+			Bitmap bitmap = qrCodeEncoder.encodeAsBitmap();
+			imageView.setImageBitmap(bitmap);
+		} catch (WriterException e) {
+			e.printStackTrace();
+		}
 
 	}
 

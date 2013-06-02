@@ -5,8 +5,9 @@
     <string name="action_settings">Definições</string>
     <string name="hello_world">Olá Mundo!</string>
     <string name="scan">Iniciar Digitalização</string>
+    <string name="generate_qr_code">Gerar Código QR</string>
     <string name="save">Guardar</string>
-    <string name="cancel">Regressar</string>
+    <string name="cancel">Voltar</string>
     <string name="btn_color_setting">Cor do botão "Digitalizar"</string>
     <string name="button_color_settings_prompt">Escolha uma cor</string>
     <string name="refresh">Atualizar</string>
